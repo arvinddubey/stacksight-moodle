@@ -21,6 +21,7 @@ class SSHttpRequestSockets extends SSHttpRequest implements SShttpInterface {
 
     public function createSocket($recreate = false){
         $flags = STREAM_CLIENT_ASYNC_CONNECT;
+        $flags = STREAM_CLIENT_CONNECT;
         if(!$this->_socket || $recreate === true){
             if($this->_socket = @stream_socket_client($this->protocol . "://" . $this->host. ':' . $this->port, $errno, $errstr, $this->timeout, $flags)){
                 stream_set_blocking($this->_socket, false);
